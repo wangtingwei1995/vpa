@@ -1,0 +1,12 @@
+apiVersion: autoscaling.k8s.io/v1beta2
+kind: VerticalPodAutoscaler
+metadata:
+  name: vpa-test-prometheus   #自定义namer
+  namespace: autodl    #自定义namespace
+spec:
+  targetRef:
+    apiVersion: "apps/v1"     #自定义apiversion
+    kind:       Deployment    #自定义资源对象
+    name:       wd-prometheus #自定义目标deployment name
+  updatePolicy:
+    updateMode: "Auto" #自定义vpa更新策略，Off、Auto、Recreate、Initial
